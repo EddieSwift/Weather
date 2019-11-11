@@ -13,18 +13,36 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupGestureRecognizers()
     }
 
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - Private
+
+private extension WeatherViewController {
+
+    func setupGestureRecognizers() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gestureRecognizer:)))
+        view.addGestureRecognizer(tapRecognizer)
+
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gestureRecognizer:)))
+        swipeRecognizer.direction = .down
+        view.addGestureRecognizer(swipeRecognizer)
     }
-    */
 
+}
+
+// MARK: - GestureRecognizerSelectors
+
+private extension WeatherViewController {
+
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        dismiss(animated: true)
+    }
+
+    @objc func handleSwipe(gestureRecognizer: UISwipeGestureRecognizer.Direction) {
+        dismiss(animated: true)
+    }
 }

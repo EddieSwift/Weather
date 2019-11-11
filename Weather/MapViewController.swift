@@ -13,6 +13,8 @@ import CoreLocation
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+
+    lazy var slideInTransitioningDelegate = SlideInPresentationManager()
     
     let locationManager = CLLocationManager()
     let regionInMeters = 30000.0
@@ -32,6 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let locationInView = sender.location(in: mapView)
         let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
+        
         print("longitude: \(locationOnMap.longitude) and latitude: \(locationOnMap.latitude)")
         
         self.performSegue(withIdentifier: "showWeatherSegue", sender: self)
@@ -75,6 +78,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.requestWhenInUseAuthorization()
         case .authorizedAlways:
             break
+        case .restricted:
+            break
+        case .denied:
+            break
         @unknown default:
             fatalError()
         }
@@ -83,14 +90,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showWeatherSegue" {
-            
-            if segue.destination is WeatherViewController {
-                
-            }
-        }
+//        if segue.identifier == "showWeatherSegue" {
+//
+//            if segue.destination is WeatherViewController {
+//
+//            }
+//        }
+
+        if let controller = segue.destination as? WeatherViewController {
+//        controller.medalWinners = presentedGames?.medalWinners
+        slideInTransitioningDelegate.direction = .bottom
+        slideInTransitioningDelegate.disableCompactHeight = true
+        controller.transitioningDelegate = slideInTransitioningDelegate
+        controller.modalPresentationStyle = .custom
     }
     
+}
 }
 
 

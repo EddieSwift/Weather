@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2C390F6C2378641800D194AC /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C390F6A2378641800D194AC /* WeatherViewController.swift */; };
 		2C390F6D2378641800D194AC /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C390F6B2378641800D194AC /* WeatherViewController.xib */; };
+		2C43C7EB23795D77000E4428 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C7EA23795D77000E4428 /* SlideInPresentationManager.swift */; };
+		2C43C7ED23795DBA000E4428 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C7EC23795DBA000E4428 /* SlideInPresentationController.swift */; };
+		2C43C7EF23795DE0000E4428 /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C7EE23795DE0000E4428 /* SlideInPresentationAnimator.swift */; };
 		2C4FF9E32376C8D4001063C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FF9E22376C8D4001063C4 /* AppDelegate.swift */; };
 		2C4FF9E52376C8D4001063C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FF9E42376C8D4001063C4 /* SceneDelegate.swift */; };
 		2C4FF9EA2376C8D4001063C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4FF9E82376C8D4001063C4 /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 /* Begin PBXFileReference section */
 		2C390F6A2378641800D194AC /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		2C390F6B2378641800D194AC /* WeatherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
+		2C43C7EA23795D77000E4428 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
+		2C43C7EC23795DBA000E4428 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
+		2C43C7EE23795DE0000E4428 /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		2C4FF9DF2376C8D4001063C4 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4FF9E22376C8D4001063C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4FF9E42376C8D4001063C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +48,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C43C7E923795D46000E4428 /* ModalPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				2C43C7EA23795D77000E4428 /* SlideInPresentationManager.swift */,
+				2C43C7EC23795DBA000E4428 /* SlideInPresentationController.swift */,
+				2C43C7EE23795DE0000E4428 /* SlideInPresentationAnimator.swift */,
+			);
+			path = ModalPresentation;
+			sourceTree = "<group>";
+		};
 		2C4FF9D62376C8D4001063C4 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +82,7 @@
 				2C4FF9F62376CBE6001063C4 /* MapViewController.swift */,
 				2C4FF9E42376C8D4001063C4 /* SceneDelegate.swift */,
 				2C4FF9E82376C8D4001063C4 /* Main.storyboard */,
+				2C43C7E923795D46000E4428 /* ModalPresentation */,
 				2C4FF9EB2376C8D7001063C4 /* Assets.xcassets */,
 				2C4FF9F02376C8D7001063C4 /* Info.plist */,
 				2C4FF9F82376CD15001063C4 /* LaunchScreen.storyboard */,
@@ -147,9 +164,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C43C7EF23795DE0000E4428 /* SlideInPresentationAnimator.swift in Sources */,
+				2C43C7EB23795D77000E4428 /* SlideInPresentationManager.swift in Sources */,
 				2C4FF9E32376C8D4001063C4 /* AppDelegate.swift in Sources */,
 				2C390F6C2378641800D194AC /* WeatherViewController.swift in Sources */,
 				2C4FF9F72376CBE6001063C4 /* MapViewController.swift in Sources */,
+				2C43C7ED23795DBA000E4428 /* SlideInPresentationController.swift in Sources */,
 				2C4FF9E52376C8D4001063C4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
