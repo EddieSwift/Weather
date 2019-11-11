@@ -61,6 +61,6 @@ extension SlideInPresentationManager: UIAdaptivePresentationControllerDelegate {
                                 viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         guard case(.overFullScreen) = style else { return nil }
         return UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "RotateViewController")
+            .instantiateViewController(withIdentifier: "WeatherViewController")
     }
 }

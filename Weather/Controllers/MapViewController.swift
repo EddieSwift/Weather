@@ -15,7 +15,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var mapView: MKMapView!
 
     lazy var slideInTransitioningDelegate = SlideInPresentationManager()
-    
+
+    var weather: Weather?
+
     let locationManager = CLLocationManager()
     let regionInMeters = 30000.0
     
@@ -29,15 +31,35 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.addGestureRecognizer(tapGesture)
     }
     
-    @objc func tapOnMap(sender: UIGestureRecognizer){
+    @objc func tapOnMap(sender: UIGestureRecognizer) {
         print("tapOnMap")
-        
+        mapView.removeAnnotations(mapView.annotations)
         let locationInView = sender.location(in: mapView)
         let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
         
         print("longitude: \(locationOnMap.longitude) and latitude: \(locationOnMap.latitude)")
-        
+
+        getWeatherByLocation(coordinate: locationOnMap)
+
         self.performSegue(withIdentifier: "showWeatherSegue", sender: self)
+
+        addAnnotation(location: locationOnMap)
+    }
+
+    // MARK: - Network Method
+
+    private func getWeatherByLocation(coordinate: CLLocationCoordinate2D) {
+        NetworkService.shared.getWeather(Constants.NetworkURL.baseURL, Constants.NetworkURL.apiKey, coordinate) { [weak self] state in
+            guard let `self` = self else { return }
+
+            switch state {
+            case .success(let weather):
+                self.weather = weather
+                print(weather)
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func addAnnotation(location: CLLocationCoordinate2D){
@@ -57,8 +79,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
             checkLocationAuthorization()
-        } else {
-            
         }
     }
     
@@ -98,7 +118,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //        }
 
         if let controller = segue.destination as? WeatherViewController {
-//        controller.medalWinners = presentedGames?.medalWinners
         slideInTransitioningDelegate.direction = .bottom
         slideInTransitioningDelegate.disableCompactHeight = true
         controller.transitioningDelegate = slideInTransitioningDelegate

@@ -19,7 +19,7 @@ class WeatherViewController: UIViewController {
 }
 
 
-// MARK: - Private
+// MARK: - Setup Gestures
 
 private extension WeatherViewController {
 
