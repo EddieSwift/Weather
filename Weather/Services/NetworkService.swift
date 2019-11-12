@@ -36,8 +36,6 @@ final public class NetworkService: NetworkingServiceProvider {
                                       humidity: json["main"]["humidity"].stringValue,
                                       country: json["sys"]["country"].stringValue,
                                       city: json["name"].stringValue,
-                                      description: json["weather"][0]["description"].stringValue,
-                                      main: json["weather"][0]["main"].stringValue,
                                       icon: json["weather"][0]["icon"].stringValue)
                 completion(.success(weather))
             } else {

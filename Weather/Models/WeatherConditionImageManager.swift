@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum WeatherConditionIconManager: String, CaseIterable {
+enum WeatherConditionIconManager: String {
 
     // Day cases
     case ClearSky = "01d.png"
@@ -33,7 +33,7 @@ enum WeatherConditionIconManager: String, CaseIterable {
     case MistNight = "50n.png"
 
     // No json response for icon
-    case DefaultIcon = "default_weather_icon.png"
+    case DefaultIcon = "gps_location.png"
 
     init(rawValue: String) {
         switch rawValue {

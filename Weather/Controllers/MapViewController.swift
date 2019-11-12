@@ -62,12 +62,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
     }
+
+    // MARK: - Map and Location Methods
     
     func addAnnotation(location: CLLocationCoordinate2D){
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "Country"
-        annotation.subtitle = "City"
+        annotation.title = weather?.country
+        annotation.subtitle = weather?.city
         self.mapView.addAnnotation(annotation)
     }
     
@@ -121,13 +123,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 weatherViewController.modalPresentationStyle = .custom
             }
         }
-
-//        if let controller = segue.destination as? WeatherViewController {
-//        slideInTransitioningDelegate.direction = .bottom
-//        slideInTransitioningDelegate.disableCompactHeight = true
-//        controller.transitioningDelegate = slideInTransitioningDelegate
-//        controller.modalPresentationStyle = .custom
-//    }
     
 }
 }

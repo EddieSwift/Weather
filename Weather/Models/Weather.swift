@@ -14,7 +14,5 @@ public struct Weather {
     let humidity: String
     let country: String
     let city: String
-    let description: String
-    let main: String
     let icon: String
 }

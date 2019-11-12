@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    // MARK: Outlets and Properties
+
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
@@ -18,13 +20,14 @@ class WeatherViewController: UIViewController {
 
     var weather: Weather?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setWeatherUI()
         setupGestureRecognizers()
     }
+
+    // MARK: Setup UI
 
     private func setWeatherUI() {
         if let temp = weather?.temp, let city = weather?.city, let country = weather?.country, let pressure = weather?.pressure, let humidity = weather?.humidity, let icon = weather?.icon {
@@ -36,14 +39,12 @@ class WeatherViewController: UIViewController {
             }
             pressureLabel.text = "Pressure \(pressure) hPa"
             humidityLabel.text = "Humidity \(humidity)%"
-            weatherImageView.image = UIImage(named: WeatherConditionIconManager(rawValue: icon).rawValue)  
+            weatherImageView.image = UIImage(named: WeatherConditionIconManager(rawValue: icon).rawValue)
         }
 
     }
 
 }
-
-
 
 // MARK: - Setup Gestures
 
