@@ -1,5 +1,5 @@
 //
-//  WeatherConditionImageManager.swift
+//  WeatherConditionIconManager.swift
 //  Weather
 //
 //  Created by Eduard Galchenko on 12.11.2019.

@@ -21,22 +21,25 @@ protocol NetworkingServiceProvider {
 
 final public class NetworkService: NetworkingServiceProvider {
     public static let shared = NetworkService()
-    public func getWeather(_ apiUrl: String, _ apiKey: String, _ coordinate: CLLocationCoordinate2D, completion: @escaping (NetworkResponse) -> Void) {
+    public func getWeather(_ apiUrl: String,
+                           _ apiKey: String,
+                           _ coordinate: CLLocationCoordinate2D,
+                           completion: @escaping (NetworkResponse) -> Void) {
 
-        print(Constants.NetworkURL.baseURL + "weather?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&apiKey=\(apiKey)&units=imperial")
+        let url = Constants.NetworkURL.baseURL + "weather?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&apiKey=\(apiKey)"
 
-        Alamofire.request(Constants.NetworkURL.baseURL + "weather?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&apiKey=\(apiKey)").responseJSON { response in
-
+        Alamofire.request(url).responseJSON { response in
+            
             if response.result.value != nil {
                 let json = JSON(response.result.value!)
-                print(json)
-                print()
+
                 let weather = Weather(temp: Int(json["main"]["temp"].doubleValue - 273.15),
                                       pressure: json["main"]["pressure"].stringValue,
                                       humidity: json["main"]["humidity"].stringValue,
                                       country: json["sys"]["country"].stringValue,
                                       city: json["name"].stringValue,
                                       icon: json["weather"][0]["icon"].stringValue)
+
                 completion(.success(weather))
             } else {
                 guard let error = response.error else {
