@@ -41,8 +41,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         getWeatherByLocation(coordinate: locationOnMap)
 
-//        self.performSegue(withIdentifier: "showWeatherSegue", sender: self)
-
         addAnnotation(location: locationOnMap)
     }
 
