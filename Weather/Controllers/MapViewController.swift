@@ -41,7 +41,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         getWeatherByLocation(coordinate: locationOnMap)
 
-        self.performSegue(withIdentifier: "showWeatherSegue", sender: self)
+//        self.performSegue(withIdentifier: "showWeatherSegue", sender: self)
 
         addAnnotation(location: locationOnMap)
     }
@@ -55,6 +55,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             switch state {
             case .success(let weather):
                 self.weather = weather
+                self.performSegue(withIdentifier: "showWeatherSegue", sender: self)
                 print(weather)
             case .error(let error):
                 print(error.localizedDescription)
@@ -110,19 +111,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showWeatherSegue" {
-//
-//            if segue.destination is WeatherViewController {
-//
-//            }
-//        }
+        if segue.identifier == "showWeatherSegue" {
 
-        if let controller = segue.destination as? WeatherViewController {
-        slideInTransitioningDelegate.direction = .bottom
-        slideInTransitioningDelegate.disableCompactHeight = true
-        controller.transitioningDelegate = slideInTransitioningDelegate
-        controller.modalPresentationStyle = .custom
-    }
+            if let weatherViewController = segue.destination as? WeatherViewController {
+                weatherViewController.weather = weather
+                slideInTransitioningDelegate.direction = .bottom
+                slideInTransitioningDelegate.disableCompactHeight = true
+                weatherViewController.transitioningDelegate = slideInTransitioningDelegate
+                weatherViewController.modalPresentationStyle = .custom
+            }
+        }
+
+//        if let controller = segue.destination as? WeatherViewController {
+//        slideInTransitioningDelegate.direction = .bottom
+//        slideInTransitioningDelegate.disableCompactHeight = true
+//        controller.transitioningDelegate = slideInTransitioningDelegate
+//        controller.modalPresentationStyle = .custom
+//    }
     
 }
 }

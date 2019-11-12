@@ -34,7 +34,7 @@ final public class NetworkService: NetworkingServiceProvider {
                 let weather = Weather(temp: Int(json["main"]["temp"].doubleValue - 273.15),
                                       pressure: json["main"]["pressure"].stringValue,
                                       humidity: json["main"]["humidity"].stringValue,
-                                      country: json["sys"][0]["country"].stringValue,
+                                      country: json["sys"]["country"].stringValue,
                                       city: json["name"].stringValue,
                                       description: json["weather"][0]["description"].stringValue,
                                       main: json["weather"][0]["main"].stringValue,

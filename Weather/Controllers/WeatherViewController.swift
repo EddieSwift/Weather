@@ -10,13 +10,39 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var weatherImageView: UIImageView!
+
+    var weather: Weather?
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setWeatherUI()
         setupGestureRecognizers()
     }
 
+    private func setWeatherUI() {
+        if let temp = weather?.temp, let city = weather?.city, let country = weather?.country, let pressure = weather?.pressure, let humidity = weather?.humidity, let icon = weather?.icon {
+            tempLabel.text = String(temp) + " °C"
+            if city.count == 0 || country.count == 0 {
+                locationLabel.text = "Location not found"
+            } else {
+                locationLabel.text = city + ", " + country
+            }
+            pressureLabel.text = "Pressure \(pressure) hPa"
+            humidityLabel.text = "Humidity \(humidity)%"
+            weatherImageView.image = UIImage(named: WeatherConditionIconManager(rawValue: icon).rawValue)  
+        }
+
+    }
+
 }
+
 
 
 // MARK: - Setup Gestures
